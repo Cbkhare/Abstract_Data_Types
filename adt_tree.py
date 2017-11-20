@@ -51,8 +51,17 @@ class Tree(object):
         """Return True if tree is empty"""
         return self.__len__() == 0
 
+    def depth(self, node):
+        """Return the depth of a node present at Position"""
+        if self.is_leaf(node):
+            return 0
+        else:
+            return 1 + self.depth(self.parent(node))
 
-
-
-
-    
+    def height(self, node):
+        """Return the height of a node present at Position"""
+        if self.is_root(node):
+            return 0
+        else:
+            return 1 + max(self.height(child_node) for child_node in
+                           self.children(node))
